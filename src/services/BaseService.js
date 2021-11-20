@@ -1,8 +1,6 @@
 module.exports = class BaseService {
     getAll() {
-        const data = this.model.find();
-
-        return data;
+        return this.model.find();
     };
 
     getById() {

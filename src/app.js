@@ -16,5 +16,5 @@ app.use(helmet());
 app.use('/projects', ProjectsRoutes);
 
 app.listen(process.env.APP_PORT, () => {
-    console.log('Sunucu ayağa kalktı..');
+    console.log('Server is running...');
 });

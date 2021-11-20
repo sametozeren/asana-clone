@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/sametozeren/asana-clone.git"
   },
-  "keywords": ["nodejs", "expresjs", "mongodb"],
+  "keywords": [
+    "nodejs",
+    "expresjs",
+    "mongodb"
+  ],
   "author": "Samet Özeren",
   "license": "MIT",
   "bugs": {
@@ -22,7 +26,9 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "http-status": "^1.5.0",
-    "mongoose": "^6.0.13"
+    "joi": "^17.4.2",
+    "mongoose": "^6.0.13",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

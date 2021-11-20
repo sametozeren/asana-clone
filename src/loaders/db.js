@@ -2,7 +2,7 @@ const Mongoose = require('mongoose');
 const db = Mongoose.connection;
 
 db.once('open', () => {
-    console.log('DB Bağlantısı Sağlandı..')
+    console.log('Connected the database!!')
 });
 
 const connectDb = async () => {

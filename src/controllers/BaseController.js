@@ -4,9 +4,9 @@ module.exports = class BaseController {
     getAll = (req, res) => {
         this.service.getAll()
             .then(response => {
-                res.status(httpStatus.CREATED).send(response);
+                res.status(httpStatus.OK).send(response);
             }).catch((e) => {
-                res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
+                res.status(httpStatus.INTERNAL_SERVER_ERROR).send();
             });
     };
 
