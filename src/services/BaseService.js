@@ -1,6 +1,8 @@
 module.exports = class BaseService {
-    async getAll() {
-        console.log('base service');
+    getAll() {
+        const data = this.model.find();
+
+        return data;
     };
 
     getById() {
@@ -11,8 +13,10 @@ module.exports = class BaseService {
         console.log('base service');
     };
 
-    add() {
-        console.log('base service');
+    add(item) {
+        const data = new this.model(item);
+
+        return data.save();
     };
 
     update() {

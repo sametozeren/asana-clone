@@ -1,6 +1,13 @@
+const httpStatus = require('http-status');
+
 module.exports = class BaseController {
-    getAll = async (req, res) => {
-        res.status(200).send('getById');
+    getAll = (req, res) => {
+        this.service.getAll()
+            .then(response => {
+                res.status(httpStatus.CREATED).send(response);
+            }).catch((e) => {
+                res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
+            });
     };
 
     getById = (req, res) => {
@@ -8,19 +15,24 @@ module.exports = class BaseController {
         res.status(200).send('getById');
     };
 
-    getByOne(req, res) {
+    getByOne = (req, res) => {
         res.status(200).send('getByOne');
     };
 
-    add(req, res) {
-        res.status(200).send('add');
+    add = (req, res) => {
+        this.service.add(req.body)
+            .then(response => {
+                res.status(httpStatus.CREATED).send(response);
+            }).catch((e) => {
+                res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
+            });
     };
 
-    update(req, res) {
+    update = (req, res) => {
         res.status(200).send('update');
     };
 
-    delete(req, res) {
+    delete = (req, res) => {
         res.status(200).send('delete');
     };
 };;

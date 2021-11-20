@@ -2,11 +2,13 @@ const express = require('express');
 const helmet = require('helmet');
 const app = express();
 const configs = require('./configs');
+const loaders = require('./loaders');
 const {
     ProjectsRoutes
 } = require('./routes');
 
 configs();
+loaders();
 
 app.use(express.json());
 app.use(helmet());
