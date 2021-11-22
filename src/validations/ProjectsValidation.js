@@ -5,4 +5,4 @@ const createValidation = Joi.object({
 
 module.exports = {
     createValidation
-}
+};

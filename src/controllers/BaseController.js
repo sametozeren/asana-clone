@@ -11,12 +11,16 @@ module.exports = class BaseController {
     };
 
     getById = (req, res) => {
-        this.service
         res.status(200).send('getById');
     };
 
     getByOne = (req, res) => {
-        res.status(200).send('getByOne');
+        this.service.getByOne(req.body)
+            .then(response => {
+                res.status(httpStatus.OK).send(response);
+            }).catch((e) => {
+                res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
+            });
     };
 
     add = (req, res) => {

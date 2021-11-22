@@ -7,8 +7,8 @@ module.exports = class BaseService {
         console.log('base service');
     };
 
-    getByOne() {
-        console.log('base service');
+    getByOne(item) {
+        return this.model.findOne(item);
     };
 
     add(item) {
