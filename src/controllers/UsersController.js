@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const uuid = require('uuid');
 const BaseController = require('./BaseController');
 const UsersService = require('../services/UsersService');
 const {
@@ -43,6 +44,25 @@ class UsersController extends BaseController {
             }).catch((e) => {
                 res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
             });
+    };
+
+    resetPassword = (req, res) => {
+        const new_password = (uuid.v4() || '').split('-')[0] || `usr-${new Date().getTime()}`;
+
+        console.log(new_password)
+        this.service.update(req.body, {
+            password: passwordToHash(new_password)
+        }).then(user => {
+            if (!user) {
+                return res.status(httpStatus.NOT_FOUND).send({
+                    error: 'User Not Found'
+                });
+            }
+
+            res.status(httpStatus.OK).send(user);
+        }).catch((e) => {
+            res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
+        });
     };
 };
 

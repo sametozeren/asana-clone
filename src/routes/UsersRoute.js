@@ -9,7 +9,8 @@ router.post('/getById', UsersController.getById);
 router.post('/getByOne', UsersController.getByOne);
 router.post('/update', UsersController.update);
 router.post('/delete', UsersController.delete);
-router.post('/register', [ValidateData(UsersValidation.registerValidation)], UsersController.register);
-router.post('/login', [ValidateData(UsersValidation.loginValidation)], UsersController.login);
+router.post('/register', ValidateData(UsersValidation.registerValidation), UsersController.register);
+router.post('/login', ValidateData(UsersValidation.loginValidation), UsersController.login);
+router.post('/reset-password', ValidateData(UsersValidation.resetPasswordValidation), UsersController.resetPassword);
 
 module.exports = router;

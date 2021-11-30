@@ -17,8 +17,10 @@ module.exports = class BaseService {
         return data.save();
     };
 
-    update() {
-        console.log('base service');
+    update(where, data) {
+        return this.model.findOneAndUpdate(where, data, {
+            new: true
+        });
     };
 
     delete() {
