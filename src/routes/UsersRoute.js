@@ -4,6 +4,7 @@ const UsersController = require('../controllers/UsersController');
 const ValidateData = require('../middlewares/ValidateData');
 const UsersValidation = require('../validations/UsersValidation');
 
+router.get('/getAll', UsersController.getAll);
 router.post('/getById', UsersController.getById);
 router.post('/getByOne', UsersController.getByOne);
 router.post('/update', UsersController.update);

@@ -5,7 +5,7 @@ const {
     passwordToHash,
     generateAccessToken,
     generateRefreshToken
-} = require('../scripts/utils/UserHelper');
+} = require('../scripts/utils/JWTHelper');
 
 class UsersController extends BaseController {
     service = UsersService;

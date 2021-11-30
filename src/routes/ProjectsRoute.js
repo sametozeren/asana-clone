@@ -7,9 +7,11 @@ const AuthenticateToken = require('../middlewares/AuthenticateToken');
 
 router.get('/getAll', ProjectsController.getAll);
 router.post('/getAll', AuthenticateToken, ProjectsController.getAll);
+router.post('/getAllPopulate', AuthenticateToken, ProjectsController.getAllPopulate);
+router.post('/getMyProjects', AuthenticateToken, ProjectsController.getMyProjects);
 router.post('/getById', ProjectsController.getById);
 router.post('/getByOne', ProjectsController.getByOne);
-router.post('/add', [ValidateData(ProjectsValidation.createValidation)], ProjectsController.add);
+router.post('/add', [AuthenticateToken, ValidateData(ProjectsValidation.createValidation)], ProjectsController.add);
 router.post('/update', ProjectsController.update);
 router.post('/delete', ProjectsController.delete);
 

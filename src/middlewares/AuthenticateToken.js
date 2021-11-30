@@ -4,8 +4,6 @@ const JWT = require('jsonwebtoken');
 const AuthenticateToken = (req, res, next) => {
     const token = ((req.headers || {}).authorization || '').split(' ')[1] || '';
 
-    console.log(req.header)
-
     if (token === '') {
         return res.status(httpStatus.UNAUTHORIZED).send({
             error: 'Token is required'
@@ -19,7 +17,7 @@ const AuthenticateToken = (req, res, next) => {
             });
         }
 
-        req.user = user;
+        req.body.user_id = user._doc || {};
 
         next();
     });

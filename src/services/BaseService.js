@@ -1,14 +1,14 @@
 module.exports = class BaseService {
-    getAll() {
-        return this.model.find();
+    getAll(where) {
+        return this.model.find(where || {});
     };
 
     getById() {
         console.log('base service');
     };
 
-    getByOne(item) {
-        return this.model.findOne(item);
+    getByOne(id) {
+        return this.model.findOne(id);
     };
 
     add(item) {

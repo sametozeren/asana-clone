@@ -2,11 +2,10 @@ const Mongoose = require('mongoose');
 const ProjectsLogger = require('../scripts/loggers/ProjectsLogger');
 const ProjectSchema = new Mongoose.Schema({
     name: String,
-    /*
     user_id: {
         type: Mongoose.Types.ObjectId,
-        ref: 'user'
-    } */
+        ref: 'users'
+    }
 }, {
     timestamps: true,
     versionKey: false
