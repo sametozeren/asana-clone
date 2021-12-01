@@ -5,7 +5,7 @@ const registerValidation = Joi.object({
     email: Joi.string().email().required().min(8),
 });
 const loginValidation = Joi.object({
-    password: Joi.string().required().min(8),
+    password: Joi.string().required(),
     email: Joi.string().email().required().min(8),
 });
 

@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const app = express();
 const configs = require('./configs');
 const loaders = require('./loaders');
+const events = require('./scripts/events');
 const {
     ProjectsRoutes,
     UsersRoutes,
@@ -10,6 +11,7 @@ const {
 
 configs();
 loaders();
+events();
 
 app.use(express.json());
 app.use(helmet());

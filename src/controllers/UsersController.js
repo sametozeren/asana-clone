@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const uuid = require('uuid');
+const eventEmitter = require('../scripts/events/eventEmitter');
 const BaseController = require('./BaseController');
 const UsersService = require('../services/UsersService');
 const {
@@ -49,7 +50,6 @@ class UsersController extends BaseController {
     resetPassword = (req, res) => {
         const new_password = (uuid.v4() || '').split('-')[0] || `usr-${new Date().getTime()}`;
 
-        console.log(new_password)
         this.service.update(req.body, {
             password: passwordToHash(new_password)
         }).then(user => {
@@ -59,7 +59,16 @@ class UsersController extends BaseController {
                 });
             }
 
-            res.status(httpStatus.OK).send(user);
+            eventEmitter.emit('send_mail', {
+                to: user.email, // list of receivers
+                subject: 'Reset Password', // Subject line
+                html: `<b>New password: ${new_password} </b>`, // html body
+            });
+
+
+            res.status(httpStatus.OK).send({
+                message: 'Mail send'
+            });
         }).catch((e) => {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
         });
