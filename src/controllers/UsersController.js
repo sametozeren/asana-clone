@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const uuid = require('uuid');
 const eventEmitter = require('../scripts/events/eventEmitter');
+const path = require('path');
 const BaseController = require('./BaseController');
 const UsersService = require('../services/UsersService');
 const {
@@ -72,6 +73,37 @@ class UsersController extends BaseController {
         }).catch((e) => {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
         });
+    };
+
+    updateProfileImage = (req, res) => {
+        if (!((req || {}).files || {}).profile_image) {
+            return res.status(httpStatus.BAD_REQUEST).send({
+                error: 'Profile Image required'
+            });
+        }
+
+        const extension = path.extname(req.files.profile_image.name);
+        const fileName = ((((req || {}).body || {}).user_id || {})._id || '') + extension;
+        const folderPath = path.join(__dirname, '../', 'uploads/users', fileName);
+        const service = this.service;
+
+        req.files.profile_image.mv(folderPath, function (err) {
+            if (err) {
+                return res.status(httpStatus.INTERNAL_SERVER_ERROR).send({
+                    error: err
+                });
+            }
+
+            service.update({
+                _id: req.body.user_id._id
+            }, {
+                profile_image: fileName
+            }).then(user => {
+                res.status(httpStatus.OK).send(user);
+            }).catch((e) => {
+                res.status(httpStatus.INTERNAL_SERVER_ERROR).send(e);
+            })
+        })
     };
 };
 

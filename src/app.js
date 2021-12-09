@@ -1,4 +1,6 @@
 const express = require('express');
+const path = require('path');
+const fileUpload = require('express-fileupload');
 const helmet = require('helmet');
 const app = express();
 const configs = require('./configs');
@@ -13,8 +15,10 @@ configs();
 loaders();
 events();
 
+app.use('/uploads', express.static(path.join(__dirname, './', 'uploads')));
 app.use(express.json());
 app.use(helmet());
+app.use(fileUpload());
 
 app.use('/projects', ProjectsRoutes);
 app.use('/users', UsersRoutes);
