@@ -9,6 +9,7 @@ const events = require('./scripts/events');
 const {
     ProjectsRoutes,
     UsersRoutes,
+    SectionsRoutes
 } = require('./routes');
 
 configs();
@@ -22,6 +23,7 @@ app.use(fileUpload());
 
 app.use('/projects', ProjectsRoutes);
 app.use('/users', UsersRoutes);
+app.use('/sections', SectionsRoutes);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server is running...');
