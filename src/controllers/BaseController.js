@@ -39,4 +39,4 @@ module.exports = class BaseController {
     delete = (req, res) => {
         res.status(200).send('delete');
     };
-};;
+};
